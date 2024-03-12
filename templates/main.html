@@ -1,0 +1,249 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Musab Shaikh - M00979361</title>
+</head>
+
+<body class="my-2">
+    <h1 class="text-center">Image Analysis</h1>
+    {% block content %}
+    <div class="container mt-5">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% block page_content %}{% endblock %}
+    </div>
+    {% endblock %}
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 mb-2"><strong>Upload your Image</strong></div>
+        </div>
+        <form method="post" action="/" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col"><input type="file" name="file" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mt-3 text-right"><input type="submit" value="Analyse" class="btn btn-info"></div>
+            </div>
+        </form>
+    </div>
+    <div class="mx-5 mt-5">
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col text-center">
+                                    {% if sobel_img %}
+                                    <img src="{{ sobel_img }}" alt="Sobel" width="100%">
+                                    {% endif %}
+                                </div>
+                                <h4 class="card-title mt-3">Sobel Operator</h4>
+                                <h6 class="text-muted card-subtitle">Gradient Based Edge Detection Operator</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col text-center">
+                                    {% if prewitt_img %}
+                                    <img src="{{ prewitt_img }}" alt="Prewitt" width="100%">
+                                    {% endif %}
+                                </div>
+                                <h4 class="card-title mt-3">Prewitt Operator</h4>
+                                <h6 class="text-muted card-subtitle">Gradient Based Edge Detection Operator</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col text-center">
+                                    {% if roberts_img %}
+                                    <img src="{{ roberts_img }}" alt="Roberts" width="100%">
+                                    {% endif %}
+                                </div>
+                                <h4 class="card-title mt-3">Robert Operator</h4>
+                                <h6 class="text-muted card-subtitle">Gradient Based Edge Detection Operator</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col text-center">
+                                    {% if frei_chen_img %}
+                                    <img src="{{ frei_chen_img }}" alt="Frei-Chen" width="100%">
+                                    {% endif %}
+                                </div>
+                                <h4 class="card-title mt-3">Frei-Chen Operator</h4>
+                                <h6 class="text-muted card-subtitle">Gradient Based Edge Detection Operator</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col text-center">
+                                    {% if scharr_img %}
+                                    <img src="{{ scharr_img }}" alt="Scharr" width="100%">
+                                    {% endif %}
+                                </div>
+                                <h4 class="card-title mt-3">Scharr Edge Operator</h4>
+                                <h6 class="text-muted card-subtitle"></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col text-center">
+                                    {% if canny_img %}
+                                    <img src="{{ canny_img }}" alt="Canny" width="100%">
+                                    {% endif %}
+                                </div>
+                                <h4 class="card-title mt-3">Canny Edge Operator</h4>
+                                <h6 class="text-muted card-subtitle">Gaussian Based Edge Detection Operator</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col text-center">
+                                    {% if log_image %}
+                                    <img src="{{ log_image }}" alt="Laplacian" width="100%">
+                                    {% endif %}
+                                </div>
+                                <h4 class="card-title mt-3">Laplacian of Gaussian</h4>
+                                <h6 class="text-muted card-subtitle mb-2">Gaussian Based Edge Detection Operator</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col text-center">
+                                    {% if k_means_img %}
+                                    <img src="{{ k_means_img }}" alt="K-Means" width="100%">
+                                    {% endif %}
+                                </div>
+                                <h4 class="card-title mt-3">K-Means Segmentation</h4>
+                                <h6 class="text-muted card-subtitle mb-2">Segmentation with k=3 clusters</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col text-center">
+                                    {% if thresh_otsu_img %}
+                                    <img src="{{ thresh_otsu_img }}" alt="Threshold Otsu" width="100%">
+                                    {% endif %}
+                                </div>
+                                <h4 class="card-title mt-3">Threshold Otsu Segmentation</h4>
+                                <h6 class="text-muted card-subtitle"></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col text-center">
+                                    {% if mtcnn_img %}
+                                    <img src="{{ mtcnn_img }}" alt="MTCNN" width="100%">
+                                    {% endif %}
+                                </div>
+                                <h4 class="card-title mt-3">MTCNN Detection</h4>
+                                <h6 class="text-muted card-subtitle mb-2">Facial points detection using MTCNN</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col text-center">
+                                    {% if svm_img %}
+                                    <img src="{{ svm_img }}" alt="SVM" width="100%">
+                                    {% endif %}
+                                </div>
+                                <h4 class="card-title mt-3">SVM Classification</h4>
+                                <h6 class="text-muted card-subtitle mb-2">Prediction: {{svm_class}} {{svm_score}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
